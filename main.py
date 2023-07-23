@@ -6,24 +6,19 @@ from processingframe import ProcessingFrame
 from disk import get_drives
 from recover import RecoverFiles
 
+from multiprocessing import Process, cpu_count
+
 class App(customtkinter.CTk):
     def __init__(self):
         super().__init__()
 
         self.destinationPath: str = "C:/recovered-files"
-        file_signatures = {
-            "JPEG": b"\xFF\xD8\xFF",
-            "PNG": b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A",
-            "PDF": b"\x25\x50\x44\x46",
-            "DOCX": b"\x50\x4B\x03\x04",
-            "XLSX": b"\x50\x4B\x03\x04",
-            "PPTX": b"\x50\x4B\x03\x04"
-        }
+        file_extensions = [ "JPG", "PNG", "PDF" ]
 
         self.process = None
         self.processing_frame: customtkinter.CTkFrame | None = None
 
-        self.title("File Reco-Lerry App")
+        self.title("Samson's LerryQuest")
         self.geometry("400x300")
         self.grid_columnconfigure((0, 1), weight=1)
         self.grid_rowconfigure(0, weight=1)
@@ -31,7 +26,7 @@ class App(customtkinter.CTk):
         self.radiobutton_frame = RadiobuttonFrame(self, "Drives", values=get_drives())
         self.radiobutton_frame.grid(row=0, column=0, padx=(10, 0), pady=(10, 0), sticky="nsew")
 
-        self.checkbox_frame = ScrollableCheckboxFrame(self, "File Types", values=file_signatures)
+        self.checkbox_frame = ScrollableCheckboxFrame(self, "File Types", values=file_extensions)
         self.checkbox_frame.grid(row=0, column=1, padx=10, pady=(10, 0), sticky="nsew")
 
         self.destPath = customtkinter.CTkLabel(self, text=self.destinationPath, fg_color="gray30", corner_radius=6)
@@ -67,10 +62,12 @@ class App(customtkinter.CTk):
 
         self.update()
 
-        self.process = RecoverFiles(drive, file_exts, self.destinationPath)
+        self.process = Process(target=RecoverFiles, args=(drive, file_exts, self.destinationPath))
+        self.process.start()
 
     def stop(self):
-        self.process.terminate = True
+        print('stop')
+        self.process.terminate()
         self.processing_frame.destroy()
 
 if __name__ == "__main__":

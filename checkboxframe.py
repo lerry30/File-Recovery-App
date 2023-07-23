@@ -14,10 +14,10 @@ class ScrollableCheckboxFrame(customtkinter.CTkScrollableFrame):
             self.checkboxes.append(checkbox)
 
     def get(self):
-        checked_checkboxes = {}
+        checked_checkboxes = []
         for checkbox in self.checkboxes:
             if checkbox.get() == 1:
                 checked = checkbox.cget("text")
-                checked_checkboxes[checked] = self.values[checked]
-        print(self.values)
+                checked_checkboxes.append(checked)
+        # print(self.values)
         return checked_checkboxes
