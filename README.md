@@ -1,6 +1,6 @@
 # FrankensFile
 
-A desktop application that recovers files from flash drives or other types of
+A desktop application that <mark>recovers files<mark> from flash drives or other types of
 drives. Implemented a user interface that allows users to select specified file types for
 recovery.
 
