@@ -18,7 +18,7 @@ class App(customtkinter.CTk):
         self.process = None
         self.processing_frame: customtkinter.CTkFrame | None = None
 
-        self.title("Samson's LerryQuest")
+        self.title("FrankensFile")
         self.geometry("400x300")
         self.grid_columnconfigure((0, 1), weight=1)
         self.grid_rowconfigure(0, weight=1)
