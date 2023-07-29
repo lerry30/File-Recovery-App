@@ -1,7 +1,7 @@
 import customtkinter
-from checkboxframe import ScrollableCheckboxFrame
-from radiobuttonframe import RadiobuttonFrame
-from processingframe import ProcessingFrame
+from components.checkboxframe import ScrollableCheckboxFrame
+from components.radiobuttonframe import RadiobuttonFrame
+from components.processingframe import ProcessingFrame
 
 from disk import get_drives
 from recover import RecoverFiles
