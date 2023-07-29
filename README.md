@@ -16,14 +16,16 @@ recovery.
 
 To install required packages, run the following command:
 
-~ pip install -r requirements.txt
+```bash
+    pip install -r requirements.txt
+```
 
 ## Usage
 
 To run the application, execute the following command:
 
 ```bash
-python main.py
+    python main.py
 ```
 
 ### Usage steps:
